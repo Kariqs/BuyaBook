@@ -1,0 +1,34 @@
+<header id="main-header">
+    <div class="logo">
+        <a href="/">BuyaBook</a>
+    </div>
+
+    <nav>
+        <% if (!locals.isAdmin) { %>
+            <a href="/">Books</a>
+            <a href="/cart">Cart</a>
+            <% } %>
+
+                <% if (locals.isAuth && !locals.isAdmin) { %>
+                    <a href="/orders">Orders</a>
+                    <% } %>
+
+                        <% if (locals.isAdmin) { %>
+                            <a href="/admin/books">Manage Books</a>
+                            <a href="/admin/orders">Manage Orders</a>
+                            <% } %>
+
+                                <% if (!locals.isAuth) { %>
+                                    <a href="/login">Login</a>
+                                    <a href="/signup">Signup</a>
+                                    <% } %>
+
+                                        <% if (locals.isAuth) { %>
+                                            <form action="/logout" method="POST">
+                                                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                                                <button class="btn btn-alt">Logout</button>
+                                            </form>
+                                            <% } %>
+
+    </nav>
+</header>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/head',{title:"BuyaBook - Login"}) %>
+        <link rel="stylesheet" href="/styles/form.css">
+</head>
+
+<body>
+    <main>
+        <%- include('includes/header') %>
+            <hr>
+            <form action="/login" method="POST">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                <h1>
+                    Login
+                </h1>
+
+                <!-- check if there is an error message -->
+                <% if (sessionData.message) { %>
+                    <p class="error">
+                        Error! - <%= sessionData.message %>
+                    </p>
+                    <% } %>
+                        <p>
+                            <label for="email">Email</label>
+                            <input type="email" value="<%= sessionData.email %>" id="email" name="email" required>
+                        </p>
+                        <p>
+                            <label for="password">Password</label>
+                            <input type="password" value="<%= sessionData.password %>" id="password" name="password"
+                                required>
+                        </p>
+                        <p>
+                            <button type="submit" class="btn">Login</button>
+                        </p>
+
+                        <p>
+                            Do not have an account? <a href="/signup">Signup</a>
+                        </p>
+            </form>
+    </main>
+</body>
+
+</html>

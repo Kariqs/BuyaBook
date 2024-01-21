@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('includes/head',{title:"BuyaBook - Signup"}) %>
+        <link rel="stylesheet" href="/styles/form.css">
+</head>
+
+<body>
+    <main>
+        <%- include('includes/header') %>
+            <hr>
+            <form action="/signup" method="POST">
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                <h1>
+                    Signup
+                </h1>
+                <% if (sessionData.message) { %>
+                    <p class="error">
+                        Error! - <%= sessionData.message %>
+                    </p>
+                    <% } %>
+                        <p>
+                            <label for="email">Email</label>
+                            <input type="email" value="<%= sessionData.email %>" id="email" name="email" required>
+                        </p>
+                        <p>
+                            <label for="confirm-email">Confirm Email</label>
+                            <input type="email" value="<%= sessionData.confirmEmail %>" id="confirm-email"
+                                name="confirm-email" required>
+                        </p>
+                        <p>
+                            <label for="password">Password</label>
+                            <input type="password" value="<%= sessionData.password %>" id="password" name="password"
+                                required>
+                        </p>
+
+                        <p>
+                            <label for="full-name">Fullname</label>
+                            <input type="text" value="<%= sessionData.fullname %>" id="full-name" name="full-name"
+                                required>
+                        </p>
+
+                        <p>
+                            <label for="city">City/Town</label>
+                            <input type="text" value="<%= sessionData.city %>" id="city" name="city" required>
+                        </p>
+
+                        <p>
+                            <label for="phone-number">Phone Number</label>
+                            <input type="number" value="<%= sessionData.phone %>" id="phone-number" name="phone-number"
+                                required>
+                        </p>
+
+                        <p>
+                            <button type="submit" class="btn">Signup</button>
+                        </p>
+                        <p>
+                            Already have an account? <a href="/login">Login</a>
+                        </p>
+            </form>
+    </main>
+</body>
+
+</html>
