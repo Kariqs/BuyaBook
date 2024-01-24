@@ -10,7 +10,7 @@
     <main>
         <%- include('includes/header') %>
             <hr>
-            <form action="/signup" method="POST">
+            <form class="form" action="/signup" method="POST">
                 <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
                 <h1>
                     Signup

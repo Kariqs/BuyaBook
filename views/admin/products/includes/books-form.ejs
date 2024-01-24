@@ -1,0 +1,27 @@
+<form class="form form-alt" action="/admin/addnewbook" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+    <p>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+    </p>
+    <p>
+        <label for="initial-price">Initial Price</label>
+        <input type="number" id="initial-price" name="initial-price" required>
+    </p>
+    <p>
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" required>
+    </p>
+    <p>
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" required accept=".png,.jpg,.jpeg">
+    </p>
+    <p>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+    </p>
+    <section>
+        <button type="reset" class="btn btn-alt">Clear</button>
+        <button type="submit" class="btn">Add Book</button>
+    </section>
+</form>

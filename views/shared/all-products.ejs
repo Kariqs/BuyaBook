@@ -2,14 +2,26 @@
 <html lang="en">
 
 <head>
-    <%- include('includes/head',{title:"BuyaBook - All products"}) %>
+    <%- include('includes/head',{title:"BuyaBook - All Books"}) %>
 </head>
 
 <body>
     <main>
         <%- include('includes/header') %>
             <hr>
-            <h1>All Books</h1>
+            <% if (!locals.isAdmin) { %>
+                <h1>All Books</h1>
+                <% } %>
+
+                    <% if (locals.isAdmin) { %>
+                        <h1>Book Adminstaration</h1>
+                        <section>
+                            <h2>Book Management</h2>
+                            <p>
+                                <a href="/admin/addnewbook" class="btn">Add Books</a>
+                            </p>
+                        </section>
+                        <% } %>
 
     </main>
 </body>

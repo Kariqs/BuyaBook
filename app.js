@@ -20,6 +20,7 @@ if (process.env.PORT) {
 const db = require("./data/database");
 const authRoutes = require("./routes/auth-routes");
 const baseRoutes = require("./routes/base-routes");
+const adminRoutes = require("./routes/admin-routes");
 
 //import middlewares
 const errorHandlerMiddlware = require("./middlewares/errorHandler");
@@ -39,14 +40,15 @@ const sessionConfig = sessionConfiguration();
 app.use(session(sessionConfig));
 
 //using the csurf package to protect against csrf attacks
-app.use(csrf());
+//app.use(csrf());
 
-app.use(addCsrfTokenMiddleware);
+//app.use(addCsrfTokenMiddleware);
 app.use(checkAuthStatusMiddleware);
 
 //add routes as middlewares.
 app.use(authRoutes);
 app.use(baseRoutes);
+app.use("/admin", adminRoutes);
 
 //add error handling middleware
 app.use(errorHandlerMiddlware);
