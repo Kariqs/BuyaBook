@@ -3,7 +3,7 @@ const db = require("../data/database");
 class Product {
   constructor(bookData) {
     this.title = bookData.title;
-    this.initialPrice = bookData["initial-price"];
+    this.initial = bookData.initial;
     this.price = bookData.price;
     this.description = bookData.description;
     this.image = bookData.image;
@@ -15,19 +15,26 @@ class Product {
 
   updateImageData() {
     this.imagePath = `images/books/${this.image}`;
-    this.imageUri = `/books/assets/images/${this.image}`;
+    this.imageUri = `/books/assets/books/${this.image}`;
   }
 
   async save() {
     const bookData = {
       title: this.title,
-      initialPrice: this.initialPrice,
+      initial: this.initial,
       price: this.price,
       description: this.description,
       image: this.image,
     };
 
     await db.getDb().collection("books").insertOne(bookData);
+  }
+
+  static async findAll() {
+    const books = await db.getDb().collection("books").find().toArray();
+    return books.map(function (bookDocument) {
+      return new Product(bookDocument);
+    });
   }
 }
 

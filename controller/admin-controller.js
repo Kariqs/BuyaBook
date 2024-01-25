@@ -2,7 +2,6 @@ const Product = require("../model/product");
 
 function getNewBook(req, res) {
   res.render("admin/products/add-newbook");
-  console.log(res.locals.csrfToken);
 }
 
 async function addNewBook(req, res, next) {

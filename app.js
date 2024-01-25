@@ -8,7 +8,7 @@ const path = require("path");
 //import express session package and the configuration file from config.
 const session = require("express-session");
 const sessionConfiguration = require("./config/session");
-const csrf = require("csurf");
+const helmet = require("helmet");
 
 //create environment variables for the port configuration
 let port = 3000;
@@ -24,7 +24,6 @@ const adminRoutes = require("./routes/admin-routes");
 
 //import middlewares
 const errorHandlerMiddlware = require("./middlewares/errorHandler");
-const addCsrfTokenMiddleware = require("./middlewares/addCsrf");
 const checkAuthStatusMiddleware = require("./middlewares/checkAuthentication");
 
 //set view engine and the path to the views
@@ -34,15 +33,14 @@ app.set("views", path.join(__dirname, "views"));
 //middleware for sending post requests and serving static files, that is, styles and scripts
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use("/books/assets",express.static("images"))
 
 //configure session
 const sessionConfig = sessionConfiguration();
 app.use(session(sessionConfig));
 
-//using the csurf package to protect against csrf attacks
-//app.use(csrf());
-
-//app.use(addCsrfTokenMiddleware);
+//using the helmet package to protect against csrf attacks
+app.use(helmet())
 app.use(checkAuthStatusMiddleware);
 
 //add routes as middlewares.

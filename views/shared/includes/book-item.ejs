@@ -1,0 +1,28 @@
+<article class="book-item">
+    <img src="<%= book.imageUri %>" alt="">
+
+    <div class="book-content">
+        <h1>
+            <%= book.title %>
+        </h1>
+
+        <div class="price">
+            <h3>
+                <%= book.price %>
+            </h3>
+            <p>
+                <%= book.initial %>
+            </p>
+        </div>
+
+        <% if (locals.isAdmin) { %>
+            <div class="book-actions">
+                <a href="/admin/updatebook/:id" class="btn btn-alt">Edit Book</a>
+                <button class="btn btn-alt">Delete</button>
+            </div>
+            <% }else{ %>
+                <a class="btn" href="/books/:id">View Book</a>
+                <%}%>
+
+    </div>
+</article>

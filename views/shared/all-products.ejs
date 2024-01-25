@@ -23,6 +23,16 @@
                         </section>
                         <% } %>
 
+                            <section>
+                                <ul id="books-grid">
+                                 <% for(let book of books ) { %>
+                                    <li>
+                                        <%- include('includes/book-item',{book:book}) %>
+                                    </li>
+                                 <% } %>
+                                </ul>
+                            </section>
+
     </main>
 </body>
 
