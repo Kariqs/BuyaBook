@@ -8,10 +8,10 @@
 
         <div class="price">
             <h3>
-                <%= book.price %>
+                Kshs. <%= book.price %>
             </h3>
-            <p>
-                <%= book.initial %>
+            <p style="text-decoration: line-through;">
+                Kshs. <%= book.initial %>
             </p>
         </div>
 
@@ -21,7 +21,9 @@
                 <button class="btn btn-alt">Delete</button>
             </div>
             <% }else{ %>
-                <a class="btn" href="/books/:id">View Book</a>
+                <p>
+                    <a class="btn" href="/books/:id">View Book</a>
+                </p>
                 <%}%>
 
     </div>
